@@ -46,14 +46,21 @@ export const SendMessage = async(msj)=>{
       };
       
     const response =   await axios.request(config)
-      .then((response) => {
-        SaveDataChat(data.messages[0].content,data.messages[0].role,response.data.content)
+      .then(async(response) => {
+        
+      // await  SaveDataChat(data.messages[0].content,data.messages[0].role,response.data.content)
+      //console.log(response.data)
         return(response.data);
       })
       .catch((error) => {
         return(error);
       });
-     
+
+      let pregunta  = msj.messages[0].content;
+        let rta =  response.content;
+        let usr = msj.messages[0].role;
+        
+        await  SaveDataChat(pregunta,rta,usr)
    return response;   
 }
 

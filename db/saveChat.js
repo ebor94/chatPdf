@@ -1,4 +1,5 @@
-const sql = require('mssql')
+import sql from 'mssql'
+
 import {config} from '../db/config.js'
 
 export const SaveDataChat = async (pregunta, respuesta , usuario)=>{
@@ -10,8 +11,8 @@ export const SaveDataChat = async (pregunta, respuesta , usuario)=>{
         .input('usuario', sql.VarChar, usuario)
           .execute('italbotSaveChat')
     }).then(result => {
-        console.log(result)
-        return result.recordset
+        console.log(result.recordset[0].msj)
+        return result.recordset[0].msj
     }).catch(err => {
         console.log(err)
         return err

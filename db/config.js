@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 
-const config = {
+export const config = {
     user: process.env.USERDB,
     password: process.env.PASS,
     server: process.env.HOST,

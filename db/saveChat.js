@@ -1,19 +1,26 @@
 const sql = require('mssql')
+import {config} from '../db/config.js'
 
-sql.on('error', err => {
-    // ... error handler
-})
+export const SaveDataChat = async (pregunta, respuesta , usuario)=>{
 
-export const savedta = sql.connect(config).then(pool => {
-    
-    // Stored procedure
-    
+ const saveChat = sql.connect(config).then(pool => {   
     return pool.request()
-        .input('input_parameter', sql.Int, value)
-        .output('output_parameter', sql.VarChar(50))
-        .execute('procedure_name')
-}).then(result => {
-    console.dir(result)
-}).catch(err => {
-    // ... error checks
-})
+        .input('pregunta', sql.VarChar, pregunta)
+        .input('respuesta', sql.VarChar, respuesta)
+        .input('usuario', sql.VarChar, usuario)
+          .execute('italbotSaveChat')
+    }).then(result => {
+        console.log(result)
+        return result.recordset
+    }).catch(err => {
+        console.log(err)
+        return err
+    })
+
+if (saveChat == "REGISTRO EXITOSO"){
+    return true
+}else{
+    return false
+}
+
+}

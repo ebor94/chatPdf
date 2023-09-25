@@ -1,5 +1,6 @@
 import axios from "axios"
 import qs from "qs"
+import {SaveDataChat} from '../db/saveChat.js'
 export  const ValidateFile = async (req, res)=>{
 
     let data = qs.stringify({
@@ -46,7 +47,7 @@ export const SendMessage = async(msj)=>{
       
     const response =   await axios.request(config)
       .then((response) => {
-        
+        SaveDataChat(data.messages[0].content,data.messages[0].role,response.data.content)
         return(response.data);
       })
       .catch((error) => {

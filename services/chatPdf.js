@@ -1,7 +1,7 @@
 import axios from "axios"
 import qs from "qs"
 import fs from "fs"
-import FormData from "FormData"
+import FormData from "form-data"
 import {SaveDataChat} from '../db/saveChat.js'
 export  const ValidateFile = async (req, res)=>{
 

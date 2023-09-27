@@ -1,8 +1,8 @@
-import {ValidateFile} from '../services/chatPdf.js'
+import {ValidateFile, addPdfUpload} from '../services/chatPdf.js'
 
 
 export const validatePdf = async() => {
-    const response  = await ValidateFile();
+    const response  = await addPdfUpload();
 
     return response;
 }

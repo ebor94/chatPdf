@@ -1,5 +1,7 @@
 import axios from "axios"
 import qs from "qs"
+import fs from "fs"
+import FormData from "FormData"
 import {SaveDataChat} from '../db/saveChat.js'
 export  const ValidateFile = async (req, res)=>{
 
@@ -31,6 +33,33 @@ return response;
 
 }
 
+
+export const addPdfUpload = async()=>{
+  
+  const formData = new FormData();
+  formData.append(
+    "file",
+    fs.createReadStream("./file/chatpdf.pdf")
+  );
+  
+  const options = {
+    headers: {
+      'x-api-key': 'sec_qjZus5BjZxqDajo5WAe4vfSOGW1cj3ZL', 
+      ...formData.getHeaders(),
+    },
+  };
+  
+  const response =  axios.post("https://api.chatpdf.com/v1/sources/add-file", formData, options)
+    .then((response) => {
+      return(JSON.stringify(response.data));
+    })
+    .catch((error) => {
+      return(error);
+    });
+
+  return response
+}
+
 export const SendMessage = async(msj)=>{
     let data = JSON.stringify(msj);
       
@@ -39,7 +68,7 @@ export const SendMessage = async(msj)=>{
         maxBodyLength: Infinity,
         url: 'https://api.chatpdf.com/v1/chats/message',
         headers: { 
-          'x-api-key': 'sec_qjZus5BjZxqDajo5WAe4vfSOGW1cj3ZL', 
+          'x-api-key': 'src_YN9No0i0BQqjPnfveTZ7s', 
           'Content-Type': 'application/json'
         },
         data : data

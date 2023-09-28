@@ -3,11 +3,13 @@ import {ValidateFile, addPdfUpload} from '../services/chatPdf.js'
 
 
 export const validatePdf = async() => {
-    const file  = await addPdfUpload(1);
-    const filepacto =  await validatePdfpacto();
-    response = file;
+    let response = []; 
+    let file  = await addPdfUpload(1);
+    let filepacto =  await validatePdfpacto();
+    //console.log(file, filepacto)
+    response.push(file);
     response.push(filepacto);
-    console.log(response)
+  console.log(response)
     return response;
 }
 

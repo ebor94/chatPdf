@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post('/getfile', async (req, res) => {
     const response  = await validatePdf();    
-    res.send(JSON.parse(response));
+    res.send(response);
   });
 
 router.get('/sendMessage/', async  (req, res)=>{

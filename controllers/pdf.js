@@ -7,6 +7,7 @@ export const validatePdf = async() => {
     const filepacto =  await validatePdfpacto();
     response = file;
     response.push(filepacto);
+    console.log(response)
     return response;
 }
 

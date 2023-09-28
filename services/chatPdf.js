@@ -34,13 +34,21 @@ return response;
 }
 
 
-export const addPdfUpload = async()=>{
+export const addPdfUpload = async(opcion)=>{
   
   const formData = new FormData();
+  if(opcion == 1){
   formData.append(
     "file",
-    fs.createReadStream("./file/chatpdf.pdf")
+    fs.createReadStream("./file/REGLAMENTO.pdf")
   );
+  }
+  if(opcion == 2){
+    formData.append(
+      "file",
+      fs.createReadStream("./file/PACTO.pdf")
+    );
+    }
   
   const options = {
     headers: {
